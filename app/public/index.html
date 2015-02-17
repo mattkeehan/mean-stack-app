@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="SignInApp" ng-controller="SignInController" ng-init="init()">
+<head>
+    <title>{{title}}</title>
+    <script src="js/angular1_3_11.min.js"></script>
+    <script src="js/signin.js"></script>
+</head>
+
+<body>
+    <div>
+        <form ng-submit="logIn()" ng-hide="loggedIn">
+            <label>Login</label><br/>
+            <input type="text" ng-model="username" placeholder="Username" autofocus><br/>
+            <input type="password" ng-model="password" placeholder="Password"><br/>
+            <input type="submit" value="Sign in"/>
+        </form>
+
+        <div ng-show="loggedIn">
+            <h1>You have logged in as {{username}}. Excellent work :)</h1>
+            <form ng-submit="logOut()">
+                <input type="submit" value="Sign out"/>
+            </form>
+            <h2>{{feed.feed}}</h2>
+            <pre>{{feed.data | json}}</pre>
+        </div>
+
+        <h1>{{authError}}</h1>
+
+
+    </div>
+
+</body>
+</html>
