@@ -3,8 +3,7 @@
 ## Install
 
 ``npm install``
-
-set up a mongo connection in the .env file.
+Then set up a mongo connection in the .env file.
 
 ## Test
 
