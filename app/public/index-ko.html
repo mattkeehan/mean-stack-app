@@ -1,0 +1,37 @@
+<!doctype html>
+<html id="htmlTop">
+<head>
+    <title data-bind="text : title"></title>
+
+</head>
+
+<body>
+<div>
+    <form data-bind="submit: logIn">
+        <label>Login</label><br/>
+        <input data-bind="value : username" type="text" placeholder="Username" autofocus><br/>
+        <input data-bind="value : password" type="password" placeholder="Password"><br/>
+        <input type="submit" value="Sign in"/>
+    </form>
+
+    <div>
+        <h1>You have logged in as ---. Excellent work :)</h1>
+        <form>
+            <input type="submit" value="Sign out"/>
+        </form>
+        <h2></h2>
+        <pre></pre>
+    </div>
+
+    <h1></h1>
+
+
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/knockout.js"></script>
+<script src="js/ko-signin.js"></script>
+
+
+</body>
+</html>
