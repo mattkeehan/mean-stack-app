@@ -4,6 +4,7 @@ $( document ).ready( function() {
     var appViewModel = new function() {
         var self = this;
 
+        this.loggedIn = ko.observable(false);
         this.title = ko.observable("Not logged in");
         this.username = ko.observable();
         this.password = ko.observable();
@@ -28,12 +29,13 @@ $( document ).ready( function() {
             });
         };
 
-        this.logInSuccess = function (user) {
+        this.logInSuccess = function () {
             console.log("success");
-
-            self.loggedIn = true;
+            //console.log(user);
+            self.loggedIn(true);
             self.authError="";
             self.title("Logged in");
+            //self.username(user);
             //self.getFeeds();
         };
 

@@ -7,23 +7,21 @@
 
 <body>
 <div>
-    <form data-bind="submit: logIn">
+    <form data-bind="submit: logIn, visible: !loggedIn()">
         <label>Login</label><br/>
         <input data-bind="value : username" type="text" placeholder="Username" autofocus><br/>
         <input data-bind="value : password" type="password" placeholder="Password"><br/>
         <input type="submit" value="Sign in"/>
     </form>
 
-    <div>
-        <h1>You have logged in as ---. Excellent work :)</h1>
+    <div data-bind="visible: loggedIn">
+        <h1>You have logged in as <span data-bind="text : username"></span>. Excellent work :)</h1>
         <form>
             <input type="submit" value="Sign out"/>
         </form>
         <h2></h2>
         <pre></pre>
     </div>
-
-    <h1></h1>
 
 
 </div>
