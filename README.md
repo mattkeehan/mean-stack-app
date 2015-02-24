@@ -10,6 +10,10 @@ Then set up a mongo connection in the .env file.
 ``mocha``
 
 ## Run
+(start mongo daemon in windows:
+``path\to\mongo\bin\mongod --dbpath path\to\mongodata``)
+
+then..
 
 ``node main``
 
