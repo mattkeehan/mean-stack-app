@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .axis text
+    {
+        fill: #333;
+        font-family: sans-serif;
+        font-size: 10px;
+    }
+    .axis .domain
+    {
+        opacity: 0;
+    }
+    .tick
+    {
+        stroke: #ccc;
+    }
+
+</style>
+<svg id="chart" width="600" height="400"></svg>
+<script src="js/d3.v3.min.js"></script>
+<script>
+
+    /******Sample Json data i'm trying to plot********/
+    var data1 =  {
+        "count": [202,215,179],
+        "year":[1590,1592,1593],
+        "status":"good"
+    };
+
+    var data = [
+        {
+            "count": "202",
+            "year": "1590"
+        },
+        {
+            "count": "215",
+            "year": "1592"
+        },
+        {
+            "count": "179",
+            "year": "1593"
+        }
+    ];
+
+    /*************************************************/
+
+
+    /*******************Real Stuff starts here*******************/
+    var vis = d3.select("#chart"),
+            WIDTH = 600,
+            HEIGHT = 400,
+            MARGINS = {
+                top: 20,
+                right: 20,
+                bottom: 20,
+                left: 50
+            },
+            xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(data, function (d) {
+                return (parseInt(d.year, 10) - 5);
+            }),
+                d3.max(data, function (d) {
+                    return parseInt(d.year, 10);
+                })]),
+            yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(data, function (d) {
+                return (parseInt(d.count, 10) - 5);
+            }),
+                d3.max(data, function (d) {
+                    return parseInt(d.count, 10);
+                })]),
+
+
+            xAxis = d3.svg.axis() // generate an axis
+                    .scale(xRange) // set the range of the axis
+                    .tickSize(5) // height of the ticks
+                    .tickSubdivide(true), // display ticks between text labels
+            yAxis = d3.svg.axis() // generate an axis
+                    .scale(yRange) // set the range of the axis
+                    .tickSize(5) // width of the ticks
+                    .orient("left") // have the text labels on the left hand side
+                    .tickSubdivide(true); // display ticks between text labels
+
+    function init() {
+        vis.append("svg:g") // add a container for the axis
+                .attr("class", "x axis") // add some classes so we can style it
+                .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")") // move it into position
+                .call(xAxis); // finally, add the axis to the visualisation
+
+        vis.append("svg:g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+                .call(yAxis);
+    }
+    init();
+
+</script>

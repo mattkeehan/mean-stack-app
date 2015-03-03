@@ -3,7 +3,24 @@
 <head>
     <title>{{title}}</title>
     <script src="js/angular1_3_11.min.js"></script>
+    <script src="js/d3.v3.min.js"></script>
     <script src="js/signin.js"></script>
+
+    <style>
+
+
+        .chart div {
+            font: 10px sans-serif;
+            background-color: steelblue;
+            text-align: right;
+            padding: 3px;
+            margin: 1px;
+            color: white;
+        }
+
+
+
+    </style>
 </head>
 
 <body>
@@ -17,6 +34,7 @@
 
         <div ng-show="loggedIn">
             <h1>You have logged in as {{username}}. Excellent work :)</h1>
+            <div class="chart"></div>
             <form ng-submit="logOut()">
                 <input type="submit" value="Sign out"/>
             </form>

@@ -1,16 +1,59 @@
 "use strict";
 
+
+
 angular.module("SignInApp", [])
     .controller("SignInController", function($scope, $http) {
 
         $scope.title = "Sign in";
         $scope.loggedIn = false;
 
+        $scope.updateTableData = function (logins) {
+            var users = {};
+            var usersLabelled = [];
+            var userData = [];
+            var userLabels = [];
+
+            logins.forEach(function (logIn) {
+                if (users[logIn.Username])
+                    users[logIn.Username]++;
+                else
+                    users[logIn.Username] = 1;
+            });
+
+            //console.log(logins);
+
+            Object.keys(users).forEach(function (key, value) {
+                userData.push(users[key]);
+                userLabels.push(key);
+                usersLabelled.push({
+                    label: key,
+                    value: users[key]
+                });
+            });
+
+            console.log(userData);
+            console.log(userLabels);
+
+            var x = d3.scale.linear()
+                .domain([0, d3.max(userData)])
+                .range([0, 420]);
+
+            d3.select(".chart")
+                .selectAll("div")
+                .data(userData)
+                .enter().append("div")
+                .style("width", function(d) { return x(d) + "px"; })
+                .text(function(d) { return d; });
+
+        }
+        //expects an array
         $scope.getFeeds = function () {
             $http({
                 method: "GET",
                 url: "http://localhost:3000/getFeeds"
             }).success(function(data) {
+                $scope.updateTableData(data.data);
                 $scope.feed = data;
             });
         };
