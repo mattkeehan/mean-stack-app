@@ -7,19 +7,14 @@
     <script src="js/signin.js"></script>
 
     <style>
-
-
-        .chart div {
-            font: 10px sans-serif;
-            background-color: steelblue;
-            text-align: right;
-            padding: 3px;
-            margin: 1px;
-            color: white;
+        .chart rect {
+            fill: steelblue;
         }
-
-
-
+        .chart text {
+            fill: white;
+            font: 10px sans-serif;
+            text-anchor: end;
+        }
     </style>
 </head>
 
@@ -34,7 +29,7 @@
 
         <div ng-show="loggedIn">
             <h1>You have logged in as {{username}}. Excellent work :)</h1>
-            <div class="chart"></div>
+            <svg class="chart"></svg>
             <form ng-submit="logOut()">
                 <input type="submit" value="Sign out"/>
             </form>
